@@ -1,0 +1,19 @@
+@startuml deployment
+node "Сервер" as Server {
+    [Информационная система] as IS
+    [Учет больных] as PatientRegistry
+    [Запись на прием] as AppointmentScheduler
+    [Учет приема] as ReceptionRegistry
+    [Медицинская карта] as MedicalRecord
+}
+
+node "Клиент" as Client {
+    [Пользователь] as User
+}
+
+User --> IS: Запрос на запись на прием
+IS --> PatientRegistry: Запрос на учет больного
+IS --> AppointmentScheduler: Запрос на запись на прием
+IS --> ReceptionRegistry: Запрос на учет приема
+IS --> MedicalRecord: Запрос на доступ к медицинской карте
+@enduml

@@ -1,0 +1,19 @@
+@startuml sequence
+participant "Пользователь" as User
+participant "Информационная система" as IS
+participant "Учет больных" as PatientRegistry
+participant "Медицинская карта" as MedicalRecord
+
+User -> IS: Запрос на запись на прием
+activate IS
+IS -> PatientRegistry: Запрос на учет больного
+activate PatientRegistry
+PatientRegistry -> MedicalRecord: Запрос на доступ к медицинской карте
+activate MedicalRecord
+MedicalRecord --> PatientRegistry: Медицинская карта
+deactivate MedicalRecord
+PatientRegistry --> IS: Данные о больном
+deactivate PatientRegistry
+IS --> User: Подтверждение записи на прием
+deactivate IS
+@enduml
